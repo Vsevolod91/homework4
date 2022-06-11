@@ -33,21 +33,38 @@
 
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
+personal_account = 0
+purchase_history = {}
 
 while True:
+    print("Главное меню:")
     print('1. пополнение счета')
     print('2. покупка')
     print('3. история покупок')
     print('4. выход')
 
-    choice = input('Выберите пункт меню')
+    choice = input('Выберите пункт меню: ')
+
     if choice == '1':
-        pass
+        refill = int(input("Введите сумму для пополнения"))
+        personal_account += refill
+        print("Счет пополнен. Состояние счета: {} рублей.".format(personal_account))
+
     elif choice == '2':
-        pass
+        budget_purchase = int(input("Введите сумму покупки: "))
+        if budget_purchase > personal_account:
+            print("Денег на покупку не хватает")
+
+        else:
+            purchase_name = input("Введите наименование покупки: ")
+            purchase_history[purchase_name] = budget_purchase
+            personal_account -= budget_purchase
+
     elif choice == '3':
-        pass
+        print(purchase_history)
+
     elif choice == '4':
         break
+
     else:
         print('Неверный пункт меню')
